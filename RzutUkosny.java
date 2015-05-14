@@ -52,7 +52,7 @@ public class RzutUkosny {
     }
 
     public double zasieg() {
-        return Math.pow(vel, 2) * Math.sin(2*angle) / g;
+        return predkoscPozioma() * czasRzutu();
     }
 
     public double wysokoscMaksymalna() {
@@ -64,6 +64,6 @@ public class RzutUkosny {
     }
 
     public double czasRzutu() {
-        return 2 * czasWznoszenia();
+        return czasWznoszenia() + Math.sqrt((2*h)/g + Math.pow(predkoscPionowa(), 2)/Math.pow(g,2));
     }
 }
