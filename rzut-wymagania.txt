@@ -1,0 +1,16 @@
+Symulacja rzutu ukośnego - wymagania:
+
+- wyświetlanie trajektorii rzutu,
+- animacja rzutu w czasie rzeczywistym,
+- możliwość wprowadzenia kąta rzutu (w stopniach) i prędkości początkowej (m/s),
+- wyświetlenie: 
+    - początkowej prędkości poziomej i pionowej,
+    - zasięgu rzutu,
+    - wysokości maksymalnej,
+    - czasu wznoszenia,
+    - czasu rzutu,
+- dopasowanie skali wykresu do rzutu,
+- g = 9.81 m/s^2.
+
+
+Przykładowe zrzuty ekranu: rzut.png, rzut2.png
