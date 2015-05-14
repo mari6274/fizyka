@@ -8,6 +8,7 @@ public class Okno extends JFrame implements Runnable {
 
 	JTextArea textArea;
 	Wykres wykres;
+    JSpinner hSpinner;
     JSpinner alphaSpinner;
     JSpinner vSpinner;
     private Thread zadanie;
@@ -25,8 +26,14 @@ public class Okno extends JFrame implements Runnable {
 
         JPanel panel = new JPanel(new FlowLayout());
         getContentPane().add(panel, "North");
-        panel.add(new JLabel("kat a"));
+
+        panel.add(new JLabel("wysokosc h"));
+        hSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 0.01));
         alphaSpinner = new JSpinner(new SpinnerNumberModel(45, 0, 90, 0.01));
+        defaultEditor = (JSpinner.DefaultEditor) hSpinner.getEditor();
+        defaultEditor.getTextField().setColumns(spinnerColumns);
+        panel.add(hSpinner);
+        panel.add(new JLabel("kat a"));
         defaultEditor = (JSpinner.DefaultEditor) alphaSpinner.getEditor();
         defaultEditor.getTextField().setColumns(spinnerColumns);
         panel.add(alphaSpinner);
@@ -63,9 +70,9 @@ public class Okno extends JFrame implements Runnable {
 		getContentPane().add(new JScrollPane(textArea), "South");
 	}
 
-	void newSimulation(double angle, double v) {
+	void newSimulation(double h, double angle, double v) {
 		try {
-			RzutUkosny obliczenia = new RzutUkosny(angle, v);
+			RzutUkosny obliczenia = new RzutUkosny(h, angle, v);
 			
 			NumberFormat nf = NumberFormat.getInstance();
 			nf.setMaximumFractionDigits(3);
@@ -96,6 +103,6 @@ public class Okno extends JFrame implements Runnable {
 
     @Override
     public void run() {
-        newSimulation((Double) alphaSpinner.getValue(), (Double) vSpinner.getValue());
+        newSimulation((Double) hSpinner.getValue(), (Double) alphaSpinner.getValue(), (Double) vSpinner.getValue());
     }
 }

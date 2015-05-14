@@ -4,10 +4,11 @@ public class RzutUkosny {
 	
 	final public double angle;
 	final public double vel;
+    final public double h;
 
 	final public double velX, velY;
 
-	public RzutUkosny(double katRzutu, double predkoscPoczatkowa) {
+	public RzutUkosny(double wysokoscPoczatkowa, double katRzutu, double predkoscPoczatkowa) {
 		
 		double tmp = Math.toRadians(katRzutu);
 		if (tmp < 0) {
@@ -18,6 +19,7 @@ public class RzutUkosny {
 		
 		vel = predkoscPoczatkowa;
 		angle = tmp;
+        h = wysokoscPoczatkowa;
 		
 		velX = vel * Math.cos(angle);
 		velY = vel * Math.sin(angle);
@@ -25,9 +27,9 @@ public class RzutUkosny {
 
 	// zwraca wartosc y dla danego x
 	public double getYForX(double x) {
-		return (velY/velX) * x - (g * Math.pow(x, 2) / (2 * Math.pow(velX, 2)));
+		return ((velY/velX) * x - (g * Math.pow(x, 2) / (2 * Math.pow(velX, 2))) + h);
 	}
-	
+
 
 	// zwraca wartosc x w chwili czasu t
 	public double getXForT(double t)
@@ -37,7 +39,7 @@ public class RzutUkosny {
 
 	// zwraca wartosc y w chwili czasu t
 	public double getYForT(double t) {
-		return velY * t - g * Math.pow(t, 2) / 2;
+		return (velY * t - g * Math.pow(t, 2) / 2) + h;
 	}
 
 

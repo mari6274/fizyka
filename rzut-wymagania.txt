@@ -1,16 +1,21 @@
-Symulacja rzutu ukoÅ›nego - wymagania:
+Symulacja rzutu uko¶nego - wymagania:
 
-- wyÅ›wietlanie trajektorii rzutu,
+- wy¶wietlanie trajektorii rzutu,
 - animacja rzutu w czasie rzeczywistym,
-- moÅ¼liwoÅ›Ä‡ wprowadzenia kÄ…ta rzutu (w stopniach) i prÄ™dkoÅ›ci poczÄ…tkowej (m/s),
-- wyÅ›wietlenie: 
-    - poczÄ…tkowej prÄ™dkoÅ›ci poziomej i pionowej,
-    - zasiÄ™gu rzutu,
-    - wysokoÅ›ci maksymalnej,
+- mo¿liwo¶æ wprowadzenia k±ta rzutu (w stopniach) i prêdko¶ci pocz±tkowej (m/s),
+- wy¶wietlenie: 
+    - pocz±tkowej prêdko¶ci poziomej i pionowej,
+    - zasiêgu rzutu,
+    - wysoko¶ci maksymalnej,
     - czasu wznoszenia,
     - czasu rzutu,
 - dopasowanie skali wykresu do rzutu,
-- g = 9.81 m/s^2.
+- g = 9.81 m/s^2,
+
+- mo¿liwo¶æ wprowadzenia wysoko¶ci pocz±tkowej (m),
+- uwzglêdnienie wprowadzonej wysoko¶ci pocz±tkowej w symulacji.
 
 
-PrzykÅ‚adowe zrzuty ekranu: rzut.png, rzut2.png
+Przyk³adowe zrzuty ekranu: rzut.png, rzut2.png
+
+e-mail: antekm@amu.edu.pl
