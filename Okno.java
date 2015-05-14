@@ -49,6 +49,9 @@ public class Okno extends JFrame implements Runnable {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                if (zadanie != null) {
+                    zadanie.stop();
+                }
                 zadanie = new Thread(runnable);
                 zadanie.start();
             }
