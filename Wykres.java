@@ -16,11 +16,14 @@ public class Wykres extends JPanel {
 
 	RzutUkosny obliczenia = null;
 	BufferedImage image = null;
+
+    JLabel epLabel = new JLabel();
 	
 	public Wykres() {
 		image = newImage(screenWidth, screenHeight);
 		drawAxesAndLegend(image);
 		setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.add(epLabel);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -86,6 +89,8 @@ public class Wykres extends JPanel {
             int y2 = (int) (obliczenia.getYForT(currentTime + timeStep)/imageScale);
             g.drawLine(x1, screenHeight - marginY - y1, x2, screenHeight - marginY - y2);
 
+            drawEp(obliczenia.energiaPotencjalna(obliczenia.getYForT(currentTime)));
+
             paintComponent(getGraphics());
             try {
                 Thread.sleep((long) (1000 * timeStep));
@@ -97,7 +102,15 @@ public class Wykres extends JPanel {
 		g.dispose();
 	}
 
-	void scaleImage(RzutUkosny obliczenia) {
+    private void drawEp(double ep) {
+        Graphics2D g = (Graphics2D) image.getGraphics();
+        g.setColor(Color.blue);
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        epLabel.setText("EP = " + nf.format(ep) + " J");
+    }
+
+    void scaleImage(RzutUkosny obliczenia) {
         double x = Math.ceil(obliczenia.zasieg() / (screenWidth- 2*marginX));
         double y = Math.ceil(obliczenia.wysokoscMaksymalna() / (screenHeight - 2*marginY));
         imageScale = Math.max(x, y);

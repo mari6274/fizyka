@@ -69,5 +69,7 @@ public class RzutUkosny {
         return czasWznoszenia() + Math.sqrt((2*h)/g + Math.pow(predkoscPionowa(), 2)/Math.pow(g,2));
     }
 
-//    public double energiaKinetyczna()
+    public double energiaPotencjalna(double h) {
+        return m*g*h;
+    }
 }

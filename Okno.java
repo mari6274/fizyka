@@ -73,7 +73,7 @@ public class Okno extends JFrame implements Runnable {
 
         wykres = new Wykres();
         getContentPane().add(wykres, "Center");
-		textArea = new JTextArea(10, 60);
+		textArea = new JTextArea(12, 60);
 		textArea.setEditable(false);
 		getContentPane().add(new JScrollPane(textArea), "South");
 	}
