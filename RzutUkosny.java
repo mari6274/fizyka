@@ -56,7 +56,7 @@ public class RzutUkosny {
     }
 
     public double wysokoscMaksymalna() {
-        return Math.pow(vel, 2) * Math.pow(Math.sin(angle), 2) / (2 * g);
+        return Math.pow(vel, 2) * Math.pow(Math.sin(angle), 2) / (2 * g) + h;
     }
 
     public double czasWznoszenia() {
