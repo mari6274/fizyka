@@ -23,34 +23,34 @@ public class Okno extends JFrame implements Runnable {
 		getContentPane().setLayout(new BorderLayout());
 
         JSpinner.DefaultEditor defaultEditor;
-        final int spinnerColumns = 5;
+        final int spinnerColumns = 4;
 
         JPanel panel = new JPanel(new FlowLayout());
         getContentPane().add(panel, "North");
 
-        panel.add(new JLabel("masa m [kg]"));
+        panel.add(new JLabel("Masa [kg]"));
         mSpinner = new JSpinner(new SpinnerNumberModel(10, 0, 10000, 0.1));
         defaultEditor = (JSpinner.DefaultEditor) mSpinner.getEditor();
         defaultEditor.getTextField().setColumns(spinnerColumns);
         panel.add(mSpinner);
-        panel.add(new JLabel("wysokosc h [m]"));
+        panel.add(new JLabel("Wysokość [m]"));
         hSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 0.1));
         defaultEditor = (JSpinner.DefaultEditor) hSpinner.getEditor();
         defaultEditor.getTextField().setColumns(spinnerColumns);
         panel.add(hSpinner);
-        panel.add(new JLabel("kat a [st]"));
+        panel.add(new JLabel("Kąt [st]"));
         alphaSpinner = new JSpinner(new SpinnerNumberModel(45, 0, 90, 0.1));
         defaultEditor = (JSpinner.DefaultEditor) alphaSpinner.getEditor();
         defaultEditor.getTextField().setColumns(spinnerColumns);
         panel.add(alphaSpinner);
-        panel.add(new JLabel("predkosc v [m/s]"));
+        panel.add(new JLabel("Prędkość [m/s]"));
         vSpinner = new JSpinner(new SpinnerNumberModel(100, 0, 10000, 0.1));
         defaultEditor = (JSpinner.DefaultEditor) vSpinner.getEditor();
         defaultEditor.getTextField().setColumns(spinnerColumns);
         panel.add(vSpinner);
 
         final Runnable runnable = this;
-        JButton startButton = new JButton("start");
+        JButton startButton = new JButton("Start");
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -62,7 +62,7 @@ public class Okno extends JFrame implements Runnable {
             }
         });
         panel.add(startButton);
-        JButton stopButton = new JButton("stop");
+        JButton stopButton = new JButton("Stop");
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

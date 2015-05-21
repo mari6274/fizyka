@@ -17,13 +17,10 @@ public class Wykres extends JPanel {
 	RzutUkosny obliczenia = null;
 	BufferedImage image = null;
 
-    JLabel epLabel = new JLabel();
-	
 	public Wykres() {
 		image = newImage(screenWidth, screenHeight);
 		drawAxesAndLegend(image);
 		setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.add(epLabel);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -89,7 +86,9 @@ public class Wykres extends JPanel {
             int y2 = (int) (obliczenia.getYForT(currentTime + timeStep)/imageScale);
             g.drawLine(x1, screenHeight - marginY - y1, x2, screenHeight - marginY - y2);
 
+            cleanEpEk();
             drawEp(obliczenia.energiaPotencjalna(obliczenia.getYForT(currentTime)));
+            drawEk();
 
             paintComponent(getGraphics());
             try {
@@ -102,12 +101,28 @@ public class Wykres extends JPanel {
 		g.dispose();
 	}
 
+    private void cleanEpEk() {
+        Graphics2D g = (Graphics2D) image.getGraphics();
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(600, 0, 200, 30);
+    }
+
     private void drawEp(double ep) {
         Graphics2D g = (Graphics2D) image.getGraphics();
-        g.setColor(Color.blue);
+        g.setStroke(new BasicStroke(1));
+        g.setColor(Color.BLUE);
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMaximumFractionDigits(2);
-        epLabel.setText("EP = " + nf.format(ep) + " J");
+        g.drawString("Ep = " + nf.format(ep) + " J", 600, 12);
+    }
+
+    private void drawEk() {
+        Graphics2D g = (Graphics2D) image.getGraphics();
+        g.setStroke(new BasicStroke(1));
+        g.setColor(Color.BLUE);
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        g.drawString("Ek = ", 600, 24);
     }
 
     void scaleImage(RzutUkosny obliczenia) {
