@@ -72,4 +72,12 @@ public class RzutUkosny {
     public double energiaPotencjalna(double h) {
         return m*g*h;
     }
+
+    public double energiaKinetyczna(double t) {
+        return m*Math.pow(predkoscChwilowa(t), 2)/2;
+    }
+
+    private double predkoscChwilowa(double t) {
+        return Math.sqrt(Math.pow(velX, 2) + Math.pow(velY - g*t, 2));
+    }
 }

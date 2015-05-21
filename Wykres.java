@@ -88,7 +88,7 @@ public class Wykres extends JPanel {
 
             cleanEpEk();
             drawEp(obliczenia.energiaPotencjalna(obliczenia.getYForT(currentTime)));
-            drawEk();
+            drawEk(obliczenia.energiaKinetyczna(currentTime));
 
             paintComponent(getGraphics());
             try {
@@ -116,13 +116,13 @@ public class Wykres extends JPanel {
         g.drawString("Ep = " + nf.format(ep) + " J", 600, 12);
     }
 
-    private void drawEk() {
+    private void drawEk(double ek) {
         Graphics2D g = (Graphics2D) image.getGraphics();
         g.setStroke(new BasicStroke(1));
         g.setColor(Color.BLUE);
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMaximumFractionDigits(2);
-        g.drawString("Ek = ", 600, 24);
+        g.drawString("Ek = " + nf.format(ek) + " J", 600, 24);
     }
 
     void scaleImage(RzutUkosny obliczenia) {
