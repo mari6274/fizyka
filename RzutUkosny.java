@@ -5,10 +5,11 @@ public class RzutUkosny {
 	final public double angle;
 	final public double vel;
     final public double h;
+    final public double m;
 
 	final public double velX, velY;
 
-	public RzutUkosny(double wysokoscPoczatkowa, double katRzutu, double predkoscPoczatkowa) {
+	public RzutUkosny(double masa, double wysokoscPoczatkowa, double katRzutu, double predkoscPoczatkowa) {
 		
 		double tmp = Math.toRadians(katRzutu);
 		if (tmp < 0) {
@@ -20,6 +21,7 @@ public class RzutUkosny {
 		vel = predkoscPoczatkowa;
 		angle = tmp;
         h = wysokoscPoczatkowa;
+        m = masa;
 		
 		velX = vel * Math.cos(angle);
 		velY = vel * Math.sin(angle);
@@ -66,4 +68,6 @@ public class RzutUkosny {
     public double czasRzutu() {
         return czasWznoszenia() + Math.sqrt((2*h)/g + Math.pow(predkoscPionowa(), 2)/Math.pow(g,2));
     }
+
+//    public double energiaKinetyczna()
 }

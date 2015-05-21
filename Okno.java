@@ -8,6 +8,7 @@ public class Okno extends JFrame implements Runnable {
 
 	JTextArea textArea;
 	Wykres wykres;
+    JSpinner mSpinner;
     JSpinner hSpinner;
     JSpinner alphaSpinner;
     JSpinner vSpinner;
@@ -27,22 +28,26 @@ public class Okno extends JFrame implements Runnable {
         JPanel panel = new JPanel(new FlowLayout());
         getContentPane().add(panel, "North");
 
-        panel.add(new JLabel("wysokosc h"));
-        hSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 0.01));
-        alphaSpinner = new JSpinner(new SpinnerNumberModel(45, 0, 90, 0.01));
+        panel.add(new JLabel("masa m [kg]"));
+        mSpinner = new JSpinner(new SpinnerNumberModel(10, 0, 10000, 0.1));
+        defaultEditor = (JSpinner.DefaultEditor) mSpinner.getEditor();
+        defaultEditor.getTextField().setColumns(spinnerColumns);
+        panel.add(mSpinner);
+        panel.add(new JLabel("wysokosc h [m]"));
+        hSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 0.1));
         defaultEditor = (JSpinner.DefaultEditor) hSpinner.getEditor();
         defaultEditor.getTextField().setColumns(spinnerColumns);
         panel.add(hSpinner);
-        panel.add(new JLabel("kat a"));
+        panel.add(new JLabel("kat a [st]"));
+        alphaSpinner = new JSpinner(new SpinnerNumberModel(45, 0, 90, 0.1));
         defaultEditor = (JSpinner.DefaultEditor) alphaSpinner.getEditor();
         defaultEditor.getTextField().setColumns(spinnerColumns);
         panel.add(alphaSpinner);
-        panel.add(new JLabel("predkosc v"));
-        vSpinner = new JSpinner(new SpinnerNumberModel(100, 0, 10000, 0.01));
+        panel.add(new JLabel("predkosc v [m/s]"));
+        vSpinner = new JSpinner(new SpinnerNumberModel(100, 0, 10000, 0.1));
         defaultEditor = (JSpinner.DefaultEditor) vSpinner.getEditor();
         defaultEditor.getTextField().setColumns(spinnerColumns);
         panel.add(vSpinner);
-        panel.add(new JLabel("m/s"));
 
         final Runnable runnable = this;
         JButton startButton = new JButton("start");
@@ -73,15 +78,17 @@ public class Okno extends JFrame implements Runnable {
 		getContentPane().add(new JScrollPane(textArea), "South");
 	}
 
-	void newSimulation(double h, double angle, double v) {
+	void newSimulation(double m, double h, double angle, double v) {
 		try {
-			RzutUkosny obliczenia = new RzutUkosny(h, angle, v);
+			RzutUkosny obliczenia = new RzutUkosny(m, h, angle, v);
 			
 			NumberFormat nf = NumberFormat.getInstance();
 			nf.setMaximumFractionDigits(3);
 			
 			textArea.setText("# Rzut Ukosny:\n");
-			textArea.append("Kat: " + nf.format(obliczenia.angle) + "[rad]\n");
+            textArea.append("Masa: " + nf.format(obliczenia.m) + "[kg]\n");
+            textArea.append("Wysokość początkowa: " + nf.format(obliczenia.h) + "[m]\n");
+			textArea.append("Kąt: " + nf.format(obliczenia.angle) + "[rad]\n");
 			textArea.append("Predkosc: " + nf.format(obliczenia.vel) + "[m/s]\n");
             textArea.append("Predkosc pozioma: " + nf.format(obliczenia.predkoscPozioma()) + "[m/s]\n");
             textArea.append("Predkosc pionowa: " + nf.format(obliczenia.predkoscPionowa()) + "[m/s]\n");
@@ -106,6 +113,6 @@ public class Okno extends JFrame implements Runnable {
 
     @Override
     public void run() {
-        newSimulation((Double) hSpinner.getValue(), (Double) alphaSpinner.getValue(), (Double) vSpinner.getValue());
+        newSimulation((Double) mSpinner.getValue(), (Double) hSpinner.getValue(), (Double) alphaSpinner.getValue(), (Double) vSpinner.getValue());
     }
 }
