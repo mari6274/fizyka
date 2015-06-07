@@ -126,8 +126,8 @@ public class Wykres extends JPanel {
     }
 
     void scaleImage(RzutUkosny obliczenia) {
-        double x = Math.ceil(obliczenia.zasieg() / (screenWidth- 2*marginX));
-        double y = Math.ceil(obliczenia.wysokoscMaksymalna() / (screenHeight - 2*marginY));
+        double x = obliczenia.zasieg() / (screenWidth- 2*marginX);
+        double y = obliczenia.wysokoscMaksymalna() / (screenHeight - 2*marginY);
         imageScale = Math.max(x, y);
 	}
 }
