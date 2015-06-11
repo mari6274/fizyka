@@ -77,6 +77,11 @@ public class Wykres extends JPanel {
             g.drawLine((int) screenX+marginX, screenHeight-y1-marginY, (int)screenX+1+marginX, screenHeight-y2-marginY);
         }
 
+
+        cleanEpEk();
+        drawEp(obliczenia.energiaPotencjalna(obliczenia.getYForT(currentTime)));
+        drawEk(obliczenia.energiaKinetyczna(currentTime));
+
         g.setStroke(new BasicStroke(3));
         g.setColor(Color.RED);
         for (currentTime = 0; currentTime < obliczenia.czasRzutu(); currentTime += timeStep) {
@@ -86,9 +91,15 @@ public class Wykres extends JPanel {
             int y2 = (int) (obliczenia.getYForT(currentTime + timeStep)/imageScale);
             g.drawLine(x1, screenHeight - marginY - y1, x2, screenHeight - marginY - y2);
 
+            double ctts;
+            if (currentTime + timeStep < obliczenia.czasRzutu()) {
+                ctts = currentTime + timeStep;
+            } else {
+                ctts = obliczenia.czasRzutu();
+            }
             cleanEpEk();
-            drawEp(obliczenia.energiaPotencjalna(obliczenia.getYForT(currentTime)));
-            drawEk(obliczenia.energiaKinetyczna(currentTime));
+            drawEp(obliczenia.energiaPotencjalna(obliczenia.getYForT(ctts)));
+            drawEk(obliczenia.energiaKinetyczna(ctts));
 
             paintComponent(getGraphics());
             try {
